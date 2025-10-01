@@ -15,14 +15,14 @@ function clearError(input) {
 
 // const nim = document.getElementById("nim");
 // const namaLengkap = document.getElementById("nama_lengkap");
-const username = document.getElementById("username");
+const email = document.getElementById("email");
 // const tahunMasuk = document.getElementById("tahun_masuk");
 const password = document.getElementById("password");
 const passwordOptional = document.getElementById("passwordOptional");
 const btnSubmit = document.getElementById("btnSubmit");
 
 function checkFormValidity() {
-  const inputs = [username, password];
+  const inputs = [email, password];
   let allValid = true;
 
   inputs.forEach((input) => {
@@ -34,21 +34,30 @@ function checkFormValidity() {
   btnSubmit.disabled = !allValid;
 }
 
-// validasi username
-username.addEventListener("input", () => {
-  const val = username.value.trim();
+// validasi email
+email.addEventListener("input", () => {
+  // const val = email.value.trim();
+  // if (val === "") {
+  //   setError(email, "email wajib diisi");
+  // } else if (!/^[A-Za-z0-9]+$/.test(val)) {
+  //   setError(email, "email hanya huruf/angka");
+  // } else if (val.length < 5) {
+  //   setError(email, "email minimal 5 karakter");
+  // } else {
+  //   clearError(email);
+  //   checkFormValidity();
+  // }
+  const val = email.value.trim();
   if (val === "") {
-    setError(username, "Username wajib diisi");
-  } else if (!/^[A-Za-z0-9]+$/.test(val)) {
-    setError(username, "Username hanya huruf/angka");
-  } else if (val.length < 5) {
-    setError(username, "Username minimal 5 karakter");
+    setError(email, "Email wajib diisi");
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+    setError(email, "Format email tidak valid");
   } else {
-    clearError(username);
+    clearError(email);
     checkFormValidity();
   }
 });
-username.addEventListener("change", checkFormValidity);
+email.addEventListener("change", checkFormValidity);
 
 // validasi password opsional
 if (passwordOptional) {
@@ -57,8 +66,8 @@ if (passwordOptional) {
     if (val === "") {
       clearError(passwordOptional);
       checkFormValidity();
-    } else if (val.length < 8) {
-      setError(passwordOptional, "Password minimal 8 karakter");
+    } else if (val.length < 6) {
+      setError(passwordOptional, "Password minimal 6 karakter");
     } else {
       clearError(passwordOptional);
       checkFormValidity();
@@ -71,8 +80,8 @@ password.addEventListener("input", () => {
   const val = password.value.trim();
   if (val === "") {
     setError(password, "Password wajib diisi");
-  } else if (val.length < 8) {
-    setError(password, "Password minimal 8 karakter");
+  } else if (val.length < 6) {
+    setError(password, "Password minimal 6 karakter");
   } else {
     clearError(password);
     checkFormValidity();

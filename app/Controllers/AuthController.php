@@ -21,24 +21,24 @@ class AuthController extends BaseController
     public function attemptLogin()
     {
         $rules = [
-            'username' => 'required|min_length[3]',
-            'password' => 'required|min_length[5]',
+            'email' => 'required|valid_email',
+            'password' => 'required|min_length[6]',
         ];
 
         if (!$this->validate($rules)) {
             return redirect()->back()->withInput()->with('validation', $this->validator);
         }
 
-        $username = $this->request->getPost('username');
+        $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
-        $userModel = new \App\Models\UserModel();
-        $user = $userModel->where('username', $username)->first();
+        $userModel = new \App\Models\UsersModel();
+        $user = $userModel->where('email', $email)->first();
 
         if ($user && password_verify($password, $user['password'])) {
             // Store user data in session
-            session()->set('user_id', $user['user_id']);
-            session()->set('username', $user['username']);
+            session()->set('user_id', $user['id']);
+            session()->set('name', $user['name']);
             session()->set('role', $user['role']);
             session()->set('isLoggedIn', true);
 

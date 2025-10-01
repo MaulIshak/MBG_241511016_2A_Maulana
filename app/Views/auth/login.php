@@ -22,12 +22,12 @@
               <?php endif; ?>
 
               <!-- Login Form -->
-							<form method="POST" class="needs-validation" novalidate="" autocomplete="off">
+							<form method="POST" class="needs-validation" autocomplete="off">
 								<div class="mb-3">
-									<label class="mb-2 text-muted" for="email">Username</label>
-									<input id="username" type="text" class="form-control" name="username" value="" required autofocus>
+									<label class="mb-2 text-muted" for="email">Email</label>
+									<input id="email" type="text" class="form-control" name="email" value="" required autofocus>
 									<div class="invalid-feedback">
-										Username is invalid
+										Email is invalid
 									</div>
 								</div>
 

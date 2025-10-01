@@ -8,20 +8,33 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <?php
-        if(session()->get('role') == 'admin'):
+        if(session()->get('role') == 'gudang'):
       ?>
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/users">Users</a>
+          <a class="nav-link" href="/bahan-baku">Bahan Baku</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/permintaan">Permintaan</a>
         </li>
       </ul>
 
       <?php
-        endif;
+        elseif(session()->get('role') == 'dapur'):
       ?>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/permintaan-bahan-baku">Permintaan Bahan Baku</a>
+        </li>
+      </ul>
+
+      <?php endif; ?>
     </div>
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     Logout </button>
