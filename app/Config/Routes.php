@@ -18,9 +18,14 @@ $routes->group('bahan-baku', ['filter' => 'auth:gudang'], function($routes){
   $routes->get('/', 'BahanBakuController::index');
   $routes->get('create', 'BahanBakuController::create');
   $routes->post('create', 'BahanBakuController::store');
-  $routes->get('detail/(:num)', 'BahanBakuController::detail/$1');
+  // $routes->get('detail/(:num)', 'BahanBakuController::detail/$1');
   $routes->delete('delete/(:num)', 'BahanBakuController::delete/$1');
   $routes->get('edit/(:num)', 'BahanBakuController::edit/$1');
   $routes->post('edit/(:num)', 'BahanBakuController::update/$1');
 
+});
+
+$routes->group('dapur', ['filter' => 'auth:dapur'], function($routes){
+  $routes->get('permintaan', 'PermintaanController::index');
+  $routes->post('permintaan', 'PermintaanController::store');
 });

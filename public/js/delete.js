@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!confirmDelete) return;
 
       try {
-        const response = await fetch(`/users/delete/${userId}`, {
+        const response = await fetch(`/bahan-baku/delete/${userId}`, {
           method: "DELETE",
           headers: {
             "X-Requested-With": "XMLHttpRequest",
@@ -104,9 +104,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // });
 
   // CONTOH FORM NYA
-        //     <form data-nama="${mhs.nama_lengkap}" data-nim="${mhs.nim}" action="/admin/mahasiswa/delete/${mhs.nim}" method="post">
-        //     <input type="hidden" name="_method" value="DELETE">
-        //     <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Delete</button>
-        //   </form>
-        // </div>
+  //     <form data-nama="${mhs.nama_lengkap}" data-nim="${mhs.nim}" action="/admin/mahasiswa/delete/${mhs.nim}" method="post">
+  //     <input type="hidden" name="_method" value="DELETE">
+  //     <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Delete</button>
+  //   </form>
+  // </div>
 });

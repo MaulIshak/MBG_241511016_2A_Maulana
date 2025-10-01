@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 
 class PermintaanModel extends Model
 {
-    protected $table            = 'permintaans';
+    protected $table            = 'permintaan';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['tgl_masak', 'menu_makan', 'jumlah_porsi', 'bahan_baku', 'pemohon_id', 'status'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

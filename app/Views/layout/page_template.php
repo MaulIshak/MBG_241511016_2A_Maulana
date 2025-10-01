@@ -30,7 +30,7 @@
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/permintaan-bahan-baku">Permintaan Bahan Baku</a>
+          <a class="nav-link" href="/dapur/permintaan">Permintaan Bahan Baku</a>
         </li>
       </ul>
 
@@ -54,7 +54,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <form action="auth/logout">
+        <form action="/auth/logout">
           <button type="submit" class="btn btn-danger">Keluar</button>
 
         </form>

@@ -1,34 +1,24 @@
 <?= $this->extend('layout/page_template'); ?>
 <?= $this->section('main-content'); ?>
 <?php $validation = session()->getFlashdata('validation') ?? \Config\Services::validation(); ?>
-<h2 class="my-3 mb-4 fw-bold">Edit User</h2>
-<p class="text-secondary my-3 pb-3"> Ubah informasi user pada form di bawah.</p>
+<h2 class="my-3 mb-4 fw-bold">Edit Bahan Baku</h2>
+<p class="text-secondary my-3 pb-3"> Ubah informasi bahan baku pada form di bawah.</p>
 <div class="card">
     <div class="card-body">
-        <form action="/users/edit/<?= $user['user_id'] ?>" method="post">
-            <?= csrf_field() ?>
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control <?= $validation->hasError('username') ? 'is-invalid' : '' ?>" id="username" name="username" value="<?= old('username', $user['username']) ?>" required>
-                <div class="invalid-feedback">
-                    <?php if ($validation->hasError('username')): ?>
-                        <?= $validation->getError('username') ?>
-                    <?php endif; ?>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="passwordOptional" class="form-label">Password Baru (kosongkan jika tidak diubah)</label>
-                <div class="input-group">
-                    <input type="password" class="form-control <?= $validation->hasError('password') ? 'is-invalid' : '' ?>" id="passwordOptional" name="password">
+        <h2>Edit Bahan Baku:<?= $bahan_baku['nama'] ?> </h2>
+        <form action="/bahan-baku/edit/<?= $bahan_baku['id'] ?>" method="post">
+                <!-- Jumlah -->
+                <div class="mb-3">
+                    <label for="jumlah" class="form-label">Jumlah</label>
+                    <input type="number" class="form-control <?= $validation->hasError('jumlah') ? 'is-invalid' : '' ?>" id="jumlah" name="jumlah" value="<?= old('jumlah', $bahan_baku['jumlah']) ?>" required>
                     <div class="invalid-feedback">
-                        <?php if ($validation->hasError('password')): ?>
-                            <?= $validation->getError('password') ?>
-                        <?php endif; ?>
+                    <?php if ($validation->hasError('jumlah')): ?>
+                            <?= $validation->getError('jumlah') ?>
+                            <?php endif; ?>
                     </div>
                 </div>
-            </div>
             <div class="d-flex justify-content-end">
-                <a href="/users/" class="btn btn-secondary me-2">Batal</a>
+                <a href="/bahan-baku/" class="btn btn-secondary me-2">Batal</a>
                 <button type="submit" class="btn btn-primary" id="btnSubmit">Simpan</button>
             </div>
         </form>
