@@ -15,13 +15,6 @@ $routes->group('auth', function($routes) {
 
 // admin
 $routes->group('bahan-baku', ['filter' => 'auth:gudang'], function($routes){
-  // $routes->get('/', 'UserController::index');
-  // $routes->get('create', 'UserController::create');
-  // $routes->post('create', 'UserController::store');
-  // $routes->get('detail/(:num)', 'UserController::detail/$1');
-  // $routes->delete('delete/(:num)', 'UserController::delete/$1');
-  // $routes->get('edit/(:num)', 'UserController::edit/$1');
-  // $routes->post('edit/(:num)', 'UserController::update/$1');
   $routes->get('/', 'BahanBakuController::index');
   $routes->get('create', 'BahanBakuController::create');
   $routes->post('create', 'BahanBakuController::store');
@@ -29,5 +22,5 @@ $routes->group('bahan-baku', ['filter' => 'auth:gudang'], function($routes){
   $routes->delete('delete/(:num)', 'BahanBakuController::delete/$1');
   $routes->get('edit/(:num)', 'BahanBakuController::edit/$1');
   $routes->post('edit/(:num)', 'BahanBakuController::update/$1');
-  
+
 });

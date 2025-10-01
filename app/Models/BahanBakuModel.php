@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 
 class BahanBakuModel extends Model
 {
-    protected $table            = 'bahanbakus';
+    protected $table            = 'bahan_baku';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['nama', 'kategori', 'satuan', 'tanggal_masuk', 'tanggal_kadaluarsa', 'jumlah', 'status', 'created_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
