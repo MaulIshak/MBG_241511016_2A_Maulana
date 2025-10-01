@@ -18,7 +18,7 @@
           <a class="nav-link" href="/bahan-baku">Bahan Baku</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/permintaan">Permintaan</a>
+          <a class="nav-link" href="/bahan-baku/permintaan">Permintaan</a>
         </li>
       </ul>
 

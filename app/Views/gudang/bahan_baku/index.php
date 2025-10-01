@@ -47,7 +47,7 @@
 
                 <form data-id="<?= $bb['id'] ?>" data-name="<?=$bb['nama']?>" class="delete-form" onsubmit="return false;">
                   <!-- <input type="hidden" name="_method" value="DELETE"> -->
-                  <button type="submit"  class="btn btn-danger btn-sm" <?=( $bb['jumlah']>0) || $bb['status'] ? 'disabled':'';?> >
+                  <button type="submit"  class="btn btn-danger btn-sm" <?=( $bb['jumlah']>0) || $bb['status'] == 'kadaluarsa' ? 'disabled':'';?> >
                     <i class="bi bi-trash"></i> Delete
                   </button>
                 </form>

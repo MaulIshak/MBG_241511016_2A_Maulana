@@ -41,4 +41,14 @@ class PermintaanController extends BaseController
 
         return redirect()->back()->with('success', 'Permintaan bahan baku berhasil dikirim.');
     }
+
+    // Untuk dilihat gudang
+    public function showAll()
+    {
+        $data['title'] = 'Daftar Permintaan Bahan Baku';
+        $permintaanModel = new \App\Models\PermintaanModel();
+        $data['permintaan'] = $permintaanModel->findAll();
+
+        return view('gudang/permintaan', $data);
+    }
 }
