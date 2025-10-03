@@ -1,15 +1,4 @@
-<!-- form input
 
-Tanggal Masak : [date]
-Menu yang akan dibuat : [teks]
-Jumlah Porsi yang dibuat: [numeric]
-Daftar Bahan Baku yang diminta :
-
-No Nama Bahan Baku Jumlah
-1 [teks] [numerik]
-2 [teks] [numerik]
-
-3 [teks] [numerik] -->
 <?=$this->extend('layout/page_template')?>
 <?=$this->section('main-content')?>
 <div class="container">
@@ -94,7 +83,7 @@ No Nama Bahan Baku Jumlah
             <?php foreach ($bahan_baku as $bb): ?>
                 const option<?= $bb['id'] ?> = document.createElement('option');
                 option<?= $bb['id'] ?>.value = '<?= $bb['id'] ?>';
-                option<?= $bb['id'] ?>.textContent = '<?= $bb['nama'] ?> (<?= $bb['satuan'] ?>)';
+                option<?= $bb['id'] ?>.textContent = '<?= $bb['nama'] ?> (Stok: <?= $bb['jumlah'] ?> <?= $bb['satuan'] ?>)';
                 bahanSelect.appendChild(option<?= $bb['id'] ?>);
             <?php endforeach; ?>
         <?php endif; ?>

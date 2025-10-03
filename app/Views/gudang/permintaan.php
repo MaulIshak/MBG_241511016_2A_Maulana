@@ -95,24 +95,26 @@
   const tableBody = document.querySelector("#bahan-diminta tbody");
   const label = document.querySelector("#bahanModalLabel");
   
-  let count = 1;
+
 
   detailBtn.forEach((btn) => {
     btn.addEventListener("click", ()=>{
+      tableBody.innerHTML = "";
       const detail =JSON.parse(btn.getAttribute('data-detail'));
       label.innerHTML = 'Daftar Bahan Diminta (ID : ' + btn.getAttribute('data-id') + ')';
+      let count = 1;
       for (let i = 0; i < detail.length; i++) {
         const row = document.createElement('tr');
-        row.innerHTML = "";
         const bahanNama = detail[i].nama;
         const bahanJumlah = detail[i].jumlah_diminta;
         const bahanSatuan = detail[i].satuan;
-        row.innerHTML += `
-          <td>${count++}</td>
-          <td>${bahanNama}</td>
-          <td>${bahanJumlah}</td>
-          <td>${bahanSatuan}</td>
+        row.innerHTML = `
+        <td>${count++}</td>
+        <td>${bahanNama}</td>
+        <td>${bahanJumlah}</td>
+        <td>${bahanSatuan}</td>
         `
+
         tableBody.appendChild(row);
       } 
       

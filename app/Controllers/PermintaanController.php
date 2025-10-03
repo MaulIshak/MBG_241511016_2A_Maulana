@@ -32,7 +32,7 @@ class PermintaanController extends BaseController
         $data = [
             'tgl_masak' => $this->request->getPost('tanggal_masak'),
             'pemohon_id'   => session()->get('user_id'),
-            'menu_makan'          => $this->request->getPost('menu'),
+            'menu_makan'   => $this->request->getPost('menu'),
             'jumlah_porsi'  => $this->request->getPost('jumlah_porsi'),
             'status' => 'menunggu',
             'created_at' => date('Y-m-d H:i:s'),
@@ -44,9 +44,14 @@ class PermintaanController extends BaseController
         $jumlahDiminta = $this->request->getPost('jumlah_bahan');
         $i = 0;
         foreach ($bahanBakuIds as $bahanBakuId) {
-            $permintaanDetailModel->insert([
+            // dd([
+            //     'permintaan_id' => $permintaanId,
+            //     'bahan_id' => $bahanBakuId,
+            //     'jumlah_diminta' => $jumlahDiminta[$i++],
+            // ]);
+          $permintaanDetailModel->insert([
                 'permintaan_id' => $permintaanId,
-                'bahan_baku_id' => $bahanBakuId,
+                'bahan_id' => $bahanBakuId,
                 'jumlah_diminta' => $jumlahDiminta[$i++],
             ]);
         }
