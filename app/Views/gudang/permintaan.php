@@ -29,7 +29,7 @@
           <td><?=$pm['menu_makan']?></td>
           <td><?=$pm['jumlah_porsi']?></td>
           <td><?=$pm['pemohon_name']?></td>
-          <td class="text-center"><button class="btn btn-primary btn-sm lihat-detail" data-id="<?=$pm['id']?>" data-detail='<?=json_encode($pm["details"])?>' data-bs-toggle="modal" data-bs-target="#bahanModal">Lihat Detail</button></td>
+          <td class="text-center"><button class="btn btn-primary btn-sm rounded-pill lihat-detail" data-id="<?=$pm['id']?>" data-detail='<?=json_encode($pm["details"])?>' data-bs-toggle="modal" data-bs-target="#bahanModal">Lihat Detail</button></td>
           <td class="text-center"><div class="badge rounded-pill <?=
             ($pm['status'] == 'disetujui') ? 'text-bg-success': (($pm['status'] == 'ditolak') ? 'text-bg-danger' : 'text-bg-warning') ?>"><?=$pm['status']?></div></td>
           <td>

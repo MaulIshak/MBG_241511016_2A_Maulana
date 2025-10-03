@@ -10,7 +10,7 @@ class PermintaanController extends BaseController
     public function index()
     {
         $data['title'] = 'Permintaan Bahan Baku';
-        $data['bahan_baku'] = (new \App\Models\BahanBakuModel())->findAll();
+        $data['bahan_baku'] = (new \App\Models\BahanBakuModel())->where('jumlah > 0')->where("status != 'kadaluarsa'")->findAll();
         return view('dapur/permintaan', $data);
     }
     public function store()
