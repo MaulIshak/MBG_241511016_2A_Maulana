@@ -66,4 +66,8 @@ class PermintaanModel extends Model
 
         return $permintaanList;
     }
+
+    public function getPermintaanbyPemohonId($id){
+        
+    }
 }

@@ -93,13 +93,14 @@
   document.addEventListener("DOMContentLoaded", () => {
   const detailBtn = document.querySelectorAll(".lihat-detail");
   const tableBody = document.querySelector("#bahan-diminta tbody");
+  const label = document.querySelector("#bahanModalLabel");
   
   let count = 1;
 
   detailBtn.forEach((btn) => {
     btn.addEventListener("click", ()=>{
       const detail =JSON.parse(btn.getAttribute('data-detail'));
-      
+      label.innerHTML = 'Daftar Bahan Diminta (ID : ' + btn.getAttribute('data-id') + ')';
       for (let i = 0; i < detail.length; i++) {
         const row = document.createElement('tr');
         row.innerHTML = "";
