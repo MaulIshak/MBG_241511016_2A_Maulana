@@ -11,7 +11,8 @@
         <th scope="col">Tanggal Masak</th>
         <th scope="col">Menu Makan</th>
         <th scope="col">Jumlah Porsi</th>
-        <th scope="col">Pemohon</th>
+        <th scope="col">Nama Pemohon</th>
+        <th scope="col">Bahan Diminta</th>
         <th scope="col">Status</th>
         <th scope="col">Aksi</th>
       </tr>
@@ -27,7 +28,8 @@
           <td><?=$pm['tgl_masak']?></td>
           <td><?=$pm['menu_makan']?></td>
           <td><?=$pm['jumlah_porsi']?></td>
-          <td><?=$pm['pemohon_id']?></td>
+          <td><?=$pm['pemohon_name']?></td>
+          <td class="text-center"><button class="btn btn-primary btn-sm lihat-detail" data-id="<?=$pm['id']?>" data-detail='<?=json_encode($pm["details"])?>' data-bs-toggle="modal" data-bs-target="#bahanModal">Lihat Detail</button></td>
           <td class="text-center"><div class="badge rounded-pill <?=
             ($pm['status'] == 'disetujui') ? 'text-bg-success': (($pm['status'] == 'ditolak') ? 'text-bg-danger' : 'text-bg-warning') ?>"><?=$pm['status']?></div></td>
           <td>
@@ -57,5 +59,66 @@
 
   </table>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="bahanModal" tabindex="-1" aria-labelledby="bahanModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="bahanModalLabel">Daftar Bahan Diminta</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered table-striped" id="bahan-diminta">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Nama</th>
+              <th scope="col">Jumlah</th>
+              <th scope="col">Satuan</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const detailBtn = document.querySelectorAll(".lihat-detail");
+  const tableBody = document.querySelector("#bahan-diminta tbody");
+  
+  let count = 1;
+
+  detailBtn.forEach((btn) => {
+    btn.addEventListener("click", ()=>{
+      const detail =JSON.parse(btn.getAttribute('data-detail'));
+      
+      for (let i = 0; i < detail.length; i++) {
+        const row = document.createElement('tr');
+        row.innerHTML = "";
+        const bahanNama = detail[i].nama;
+        const bahanJumlah = detail[i].jumlah_diminta;
+        const bahanSatuan = detail[i].satuan;
+        row.innerHTML += `
+          <td>${count++}</td>
+          <td>${bahanNama}</td>
+          <td>${bahanJumlah}</td>
+          <td>${bahanSatuan}</td>
+        `
+        tableBody.appendChild(row);
+      } 
+      
+    });
+  });
+});
+
+</script>
 
 <?=$this->endSection();?>

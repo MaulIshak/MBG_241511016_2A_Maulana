@@ -10,7 +10,8 @@ class PermintaanController extends BaseController
     public function index()
     {
         $data['title'] = 'Permintaan Bahan Baku';
-        return view('dapur/permintaan', $data  );
+        $data['bahan_baku'] = (new \App\Models\BahanBakuModel())->findAll();
+        return view('dapur/permintaan', $data);
     }
     public function store()
     {
@@ -38,6 +39,17 @@ class PermintaanController extends BaseController
         ];
 
         $permintaanModel->insert($data);
+        $permintaanId = $permintaanModel->getInsertID();
+        $bahanBakuIds = $this->request->getPost('bahan_baku');
+        $jumlahDiminta = $this->request->getPost('jumlah_bahan');
+        $i = 0;
+        foreach ($bahanBakuIds as $bahanBakuId) {
+            $permintaanDetailModel->insert([
+                'permintaan_id' => $permintaanId,
+                'bahan_baku_id' => $bahanBakuId,
+                'jumlah_diminta' => $jumlahDiminta[$i++],
+            ]);
+        }
 
         return redirect()->back()->with('success', 'Permintaan bahan baku berhasil dikirim.');
     }
@@ -47,7 +59,7 @@ class PermintaanController extends BaseController
     {
         $data['title'] = 'Daftar Permintaan Bahan Baku';
         $permintaanModel = new \App\Models\PermintaanModel();
-        $data['permintaan'] = $permintaanModel->orderBy('status')->findAll();
+        $data['permintaan'] = $permintaanModel->getPermintaanWithDetails();
 
         return view('gudang/permintaan', $data);
     }
