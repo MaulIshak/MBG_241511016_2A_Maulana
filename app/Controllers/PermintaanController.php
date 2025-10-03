@@ -68,4 +68,41 @@ class PermintaanController extends BaseController
 
         return view('gudang/permintaan', $data);
     }
+
+    public function tolak($id){
+        $permintaanModel = new \App\Models\PermintaanModel();
+
+        $data = [
+            'status' => 'ditolak'
+        ];
+
+        $permintaanModel->update($id, $data);
+        return redirect()->back()->with('success', 'Permintaan berhasil ditolak');
+    }
+    public function terima($id){
+        $permintaanModel = new \App\Models\PermintaanModel();
+        $permintaanDetailModel = new \App\Models\PermintaanDetailModel();
+        $bahanBakuModel = new \App\Models\BahanBakuModel();
+
+        $data = [
+            'status' => 'disetujui'
+        ];
+
+        $permintaanModel->update($id, $data);
+        $permintaanDetail = $permintaanDetailModel->where('permintaan_id', $id)->findAll();
+
+        foreach ($permintaanDetail as $detail) {
+            // Update jumlah bahan baku
+            $bahanBaku = $bahanBakuModel->find($detail['bahan_id']);
+            if ($bahanBaku) {
+                $newJumlah = $bahanBaku['jumlah'] - $detail['jumlah_diminta'];
+                if ($newJumlah < 0) {
+                    return redirect()->back()->with('error', 'Jumlah bahan baku tidak cukup.');
+                }
+                $bahanBakuModel->update($detail['bahan_id'], ['jumlah' => $newJumlah]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Permintaan berhasil diterima dan bahan baku diperbarui.');
+    }
 }

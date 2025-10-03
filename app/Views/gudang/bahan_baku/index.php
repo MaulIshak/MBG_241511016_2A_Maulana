@@ -44,7 +44,7 @@
           <td><?=$bb['tanggal_masuk']?></td>
           <td><?=$bb['tanggal_kadaluarsa']?></td>
           <td><div class=" fw-bold <?=
-            ($bb['status'] == 'tersedia') ? 'text-success': (($bb['status'] == 'kadaluarsa') ? 'text-danger' : 'text-warning') ?>"><?=$bb['status']?></div></td>
+            ($bb['status'] == 'tersedia') ? 'text-success': (($bb['status'] == 'kadaluarsa') ? 'text-danger' : (($bb['status'] == 'habis') ? 'text-dark' : 'text-warning')) ?>"><?=$bb['status']?></div></td>
           <td>
             <div class="d-flex justify-content-evenly">
               <!-- <a href="/bahan-baku/detail/<?=$bb['id']?>" class="btn btn-primary btn-sm">

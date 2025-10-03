@@ -37,12 +37,14 @@
               if($pm['status'] != 'menunggu') continue;
             ?>
             <div class="d-flex justify-content-evenly">
-              <form data-id="<?= $pm['id'] ?>" data-name="<?=$pm['id']?>" class="" onsubmit="return false;">
-              <button type="submit"  class="btn btn-success btn-sm rounded-pill">
-                <i class="bi bi-check-lg"></i> Terima
-              </button>
+              <form action="permintaan/terima/<?=$pm['id']?>" method="post" onsubmit="return confirm('Yakin menyetujui permintaan?')">
+                <input type="hidden" name="_method" value="PUT">
+                <button type="submit"  class="btn btn-success btn-sm rounded-pill">
+                  <i class="bi bi-check-lg"></i> Setuju
+                </button>
               </form>
-              <form data-id="<?= $pm['id'] ?>" data-name="<?=$pm['id']?>" class="delete-form" onsubmit="return false;">
+              <form action="permintaan/tolak/<?=$pm['id']?>" method="post" onsubmit="return confirm('Yakin menolak permintaan?')">
+                <input type="hidden" name="_method" value="PUT">
                 <button type="submit"  class="btn btn-danger btn-sm rounded-pill" >
                   <i class="bi bi-x-lg"></i> Tolak
                 </button>
