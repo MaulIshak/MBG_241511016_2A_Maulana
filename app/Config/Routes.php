@@ -33,4 +33,5 @@ $routes->group('bahan-baku', ['filter' => 'auth:gudang'], function($routes){
 $routes->group('dapur', ['filter' => 'auth:dapur'], function($routes){
   $routes->get('permintaan', 'PermintaanController::index');
   $routes->post('permintaan', 'PermintaanController::store');
+  $routes->get('permintaan-saya', 'PermintaanController::permintaanSaya');
 });

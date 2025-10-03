@@ -6,7 +6,13 @@
 				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
 					<div class="card shadow-lg">
 						<div class="card-body p-5">
-							<h1 class="fs-4 card-title fw-bold mb-4 text-center">Login</h1>
+							<h1 class="fs-4 card-title fw-bold mb-4 text-center">
+								<img src="<?=base_url('img/Logo_Badan_Gizi_Nasional.png')?>" alt="logo bfg" width="75" class="d-block align-text-top mx-auto">
+									<span class="fw-bold">
+										Pantau<span class="text-success">MBG</span> 
+									</span>
+							</h1>
+							<p class="text-center text-muted mb-4">Silakan masuk untuk melanjutkan</p>
               <!-- Notifikasi -->
               <?php if(session()->getFlashdata('success')): ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">

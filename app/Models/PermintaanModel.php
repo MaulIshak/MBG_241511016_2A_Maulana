@@ -67,7 +67,24 @@ class PermintaanModel extends Model
         return $permintaanList;
     }
 
-    public function getPermintaanbyPemohonId($id){
-        
+    public function getPermintaanbyPemohon($id){
+        $builder = $this->db->table($this->table);
+        $builder->select();
+        $builder->where('pemohon_id', $id);
+        $builder->orderBy('status', 'ASC')->orderBy('created_at', 'DESC');
+        $query = $builder->get();
+        $permintaanList = $query->getResultArray();
+
+        $permintaanDetailModel = new PermintaanDetailModel();
+        foreach ($permintaanList as &$permintaan) {
+            $details = $permintaanDetailModel->select('bahan_baku.id, bahan_baku.nama, permintaan_detail.jumlah_diminta, bahan_baku.satuan')
+                ->join('bahan_baku', 'bahan_baku.id = permintaan_detail.bahan_id')
+                ->where('permintaan_detail.permintaan_id', $permintaan['id'])
+                ->get()
+                ->getResultArray();
+            $permintaan['details'] = $details;
+        }
+        return $permintaanList;
+
     }
 }

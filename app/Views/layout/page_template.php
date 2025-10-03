@@ -35,7 +35,10 @@
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/dapur/permintaan">Permintaan Bahan Baku</a>
+          <a class="nav-link" href="/dapur/permintaan">Form Permintaan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/dapur/permintaan-saya">Permintaan Saya</a>
         </li>
       </ul>
 

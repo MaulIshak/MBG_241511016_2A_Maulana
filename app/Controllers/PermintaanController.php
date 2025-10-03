@@ -105,4 +105,13 @@ class PermintaanController extends BaseController
 
         return redirect()->back()->with('success', 'Permintaan berhasil diterima dan bahan baku diperbarui.');
     }
+
+    public function permintaanSaya()
+    {
+        $data['title'] = 'Permintaan Saya';
+        $permintaanModel = new \App\Models\PermintaanModel();
+        $data['permintaan'] = $permintaanModel->getPermintaanByPemohon(session()->get('user_id'));
+
+        return view('dapur/permintaan_saya', $data);
+    }
 }
