@@ -8,23 +8,6 @@ class CreatePermintaanTable extends Migration
 {
     public function up()
     {
-        //Table permintaan {
-        //   id int(11) [pk, increment]
-        //   pemohon_id int(11) [note: 'Relasi ke tabel user (role = dapur)']
-        //   tgl_masak date [note: 'Tanggal rencana memasak']
-        //   menu_makan varchar(255) [note: 'Deskripsi Menu']
-        //   jumlah_porsi int(4)
-        //   status status_permintaan [note: 'Status Permintaan']
-        //   created_at datetime [note: 'Waktu Dibuat']
-        // }
-
-        // Ref: permintaan.id > user.id
-
-        // Enum status_permintaan {
-        //   "menunggu"
-        //   "disetujui"
-        //   "ditolak"
-        // }
         $this->forge->addField([
             'id' => [
                 'type'           => 'INT',
@@ -35,6 +18,7 @@ class CreatePermintaanTable extends Migration
             'pemohon_id' => [
                 'type'       => 'INT',
                 'constraint' => 11,
+                'unsigned'       => true,
             ],
             'tgl_masak' => [
                 'type' => 'DATE',

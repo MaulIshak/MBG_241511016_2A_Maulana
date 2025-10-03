@@ -2,7 +2,12 @@
 <?=$this->section('content');?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">PROYEK 3</a>
+    <a class="navbar-brand" href="/">
+      <img src="<?=base_url('img/Logo_Badan_Gizi_Nasional.png')?>" alt="logo bfg" width="30" class="d-inline-block align-text-top">
+      <span class="fw-bold">
+        Pantau<span class="text-success">MBG</span> 
+      </span>
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -35,9 +40,9 @@
       </ul>
 
       <?php endif; ?>
+      <button type="button" class="btn btn-danger ms-auto" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      Logout </button>
     </div>
-    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    Logout </button>
   </div>
 </nav>
 

@@ -17,7 +17,7 @@ class BahanBakuController extends BaseController
         // Get current time
         $now = Time::now();
 
-        // Loop through each bahan baku to check status
+        // Cek setiap bahan baku
         foreach ($data['bahan_baku'] as &$bahan) {
             $kadaluarsa = Time::parse($bahan['tanggal_kadaluarsa']);
             $diffDays = $now->difference($kadaluarsa)->getDays();
@@ -35,7 +35,7 @@ class BahanBakuController extends BaseController
                 $bahan['status'] = 'tersedia';
             }
 
-        // Update status in database
+        // Update status di database
         $bahanBakuModel->update($bahan['id'], ['status' => $bahan['status']]);
     }
         
@@ -112,7 +112,11 @@ class BahanBakuController extends BaseController
 
         // Update data
         $data = [
-
+            'nama' => $this->request->getPost('nama'),
+            'kategori' => $this->request->getPost('kategori'),
+            'satuan' => $this->request->getPost('satuan'),
+            'tanggal_masuk' => $this->request->getPost('tanggal_masuk'),
+            'tanggal_kadaluarsa' => $this->request->getPost('tanggal_kadaluarsa'),
             'jumlah' => $this->request->getPost('jumlah'),
         ];
 

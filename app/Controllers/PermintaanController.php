@@ -12,7 +12,7 @@ class PermintaanController extends BaseController
         $data['title'] = 'Permintaan Bahan Baku';
         return view('dapur/permintaan', $data  );
     }
-    public function store(): ResponseInterface
+    public function store()
     {
         // $rules = [
         //     'tanggal_masak' => 'required|valid_date',
@@ -47,7 +47,7 @@ class PermintaanController extends BaseController
     {
         $data['title'] = 'Daftar Permintaan Bahan Baku';
         $permintaanModel = new \App\Models\PermintaanModel();
-        $data['permintaan'] = $permintaanModel->findAll();
+        $data['permintaan'] = $permintaanModel->orderBy('status')->findAll();
 
         return view('gudang/permintaan', $data);
     }

@@ -8,19 +8,6 @@ class CreateUserTable extends Migration
 {
     public function up()
     {
-            // Table user {
-            //   id int(11) [pk, increment]
-            //   name varchar(100) [not null, unique]
-            //   email varchar(150) [not null, unique]
-            //   password varchar(255) [note: 'Hashed Password']
-            //   role role_user
-            //   created_at datetime [note: 'Waktu Dibuat']
-            // }
-
-            // Enum role_user {
-            //   "gudang"
-            //   "dapur"
-            // }
 
             $this->forge->addField([
                 'id' => [

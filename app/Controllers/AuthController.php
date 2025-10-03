@@ -35,7 +35,7 @@ class AuthController extends BaseController
         $userModel = new \App\Models\UsersModel();
         $user = $userModel->where('email', $email)->first();
 
-        if ($user && password_verify($password, $user['password'])) {
+        if ($user && (md5($password) == $user['password'])) {
             // Store user data in session
             session()->set('user_id', $user['id']);
             session()->set('name', $user['name']);
