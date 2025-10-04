@@ -70,6 +70,9 @@
         const cell2 = newRow.insertCell(1);
         const cell3 = newRow.insertCell(2);
 
+        const invalidFb= document.createElement('div');
+        invalidFb.classList.add('invalid-feedback');
+
         cell1.textContent = rowCount + 1;
 
         const bahanSelect = document.createElement('select');
@@ -94,6 +97,8 @@
         <?php endif; ?>
 
         cell2.appendChild(bahanSelect);
+        cell2.appendChild(invalidFb);
+
 
         const jumlahInput = document.createElement('input');
         jumlahInput.type = 'number';
@@ -103,6 +108,7 @@
         jumlahInput.required = true;
 
         cell3.appendChild(jumlahInput);
+        cell3.appendChild(invalidFb);
     });
 </script>
 <?=$this->endSection()?>

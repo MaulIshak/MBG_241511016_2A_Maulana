@@ -40,14 +40,15 @@ class CreatePermintaanDetailTable extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('permintaan_id', 'permintaan', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('bahan_id', 'bahan_baku', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('permintaan_id', 'permintaan', 'id', 'RESTRICT', 'RESTRICT');
+        $this->forge->addForeignKey('bahan_id', 'bahan_baku', 'id', 'RESTRICT', 'RESTRICT');
         $this->forge->createTable('permintaan_detail');
 
     }
 
     public function down()
     {
-        //
+        $this->forge->dropTable('permintaan_detail');
+        
     }
 }

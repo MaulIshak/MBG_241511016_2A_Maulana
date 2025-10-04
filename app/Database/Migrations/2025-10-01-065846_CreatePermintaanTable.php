@@ -44,13 +44,14 @@ class CreatePermintaanTable extends Migration
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('pemohon_id', 'users', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('pemohon_id', 'users', 'id', 'RESTRICT', 'RESTRICT');
         $this->forge->createTable('permintaan');
 
     }
 
     public function down()
     {
-        //
+        $this->forge->dropTable('permintaan');
+        
     }
 }

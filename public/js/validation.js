@@ -190,13 +190,16 @@ if (permintaanForm) {
   const tanggalMasak = document.getElementById("tanggal_masak");
   const namaMenu = document.getElementById("menu");
   const jumlahPorsi = document.getElementById("jumlah_porsi");
-  const bahanBaku = document.querySelectorAll("select[name='bahan_baku[]']");
-  const jumlahBahan = document.querySelectorAll("input[name='jumlah_bahan[]']");
+  const bahanBakuList = document.getElementById("bahanBakuList");
+  // const bahanBaku = document.querySelectorAll("select[name='bahan_baku[]']");
+  // const jumlahBahan = document.querySelectorAll("input[name='jumlah_bahan[]']");
   // console.log(bahanBaku);
   // console.log(jumlahBahan);
   const btnSubmitPermintaan = document.getElementById("btnSubmit");
 
   function checkPermintaanFormValidity() {
+    const bahanBaku = document.querySelectorAll("select[name='bahan_baku[]']");
+    const jumlahBahan = document.querySelectorAll("input[name='jumlah_bahan[]']");
     const inputs = [tanggalMasak, namaMenu, jumlahPorsi, ...bahanBaku, ...jumlahBahan];
     let allValid = true;
     inputs.forEach((input) => {
@@ -243,29 +246,51 @@ if (permintaanForm) {
   jumlahPorsi.addEventListener("change", checkPermintaanFormValidity);
 
   // validasi bahan baku dan jumlah bahan
-  bahanBaku.forEach((input, index) => {
-    input.addEventListener("input", () => {
-      const val = input.value.trim();
-      if (val === "") {
-        setError(input, "Bahan baku wajib diisi");
-      } else {
-        clearError(input);
+  // bahanBaku.forEach((input, index) => {
+  //   input.addEventListener("input", () => {
+  //     const val = input.value.trim();
+  //     if (val === "") {
+  //       setError(input, "Bahan baku wajib diisi");
+  //     } else {
+  //       clearError(input);
+  //       checkPermintaanFormValidity();
+  //     }
+  //   });
+  //   input.addEventListener("change", checkPermintaanFormValidity);
+  //   // validasi jumlah bahan
+  //   jumlahBahan[index].addEventListener("input", () => {
+  //     const val = jumlahBahan[index].value.trim();
+  //     if (val === "") {
+  //       setError(jumlahBahan[index], "Jumlah bahan wajib diisi");
+  //     } else if (isNaN(val) || parseInt(val) <= 0) {
+  //       setError(jumlahBahan[index], "Jumlah bahan harus berupa angka positif");
+  //     } else {
+  //       clearError(jumlahBahan[index]);
+  //       checkPermintaanFormValidity();
+  //     }
+  //   });
+  //   jumlahBahan[index].addEventListener("change", checkPermintaanFormValidity);
+  // });
+
+  // ✅ Delegasi event untuk baris dinamis
+  bahanBakuList.addEventListener("input", (e) => {
+    if (e.target.matches("select[name='bahan_baku[]']")) {
+      const val = e.target.value.trim();
+      if (val === "") setError(e.target, "Bahan baku wajib diisi");
+      else {
+        clearError(e.target);
         checkPermintaanFormValidity();
       }
-    });
-    input.addEventListener("change", checkPermintaanFormValidity);
-    // validasi jumlah bahan
-    jumlahBahan[index].addEventListener("input", () => {
-      const val = jumlahBahan[index].value.trim();
-      if (val === "") {
-        setError(jumlahBahan[index], "Jumlah bahan wajib diisi");
-      } else if (isNaN(val) || parseInt(val) <= 0) {
-        setError(jumlahBahan[index], "Jumlah bahan harus berupa angka positif");
-      } else {
-        clearError(jumlahBahan[index]);
+    }
+
+    if (e.target.matches("input[name='jumlah_bahan[]']")) {
+      const val = e.target.value.trim();
+      if (val === "") setError(e.target, "Jumlah bahan wajib diisi");
+      else if (isNaN(val) || parseInt(val) <= 0) setError(e.target, "Jumlah bahan harus berupa angka positif");
+      else {
+        clearError(e.target);
         checkPermintaanFormValidity();
       }
-    });
-    jumlahBahan[index].addEventListener("change", checkPermintaanFormValidity);
+    }
   });
 }

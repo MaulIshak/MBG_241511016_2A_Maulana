@@ -79,6 +79,7 @@ class CreateBahanBakuTable extends Migration
 
     public function down()
     {
-        //
+        $this->forge->dropTable('bahan_baku');
+        
     }
 }

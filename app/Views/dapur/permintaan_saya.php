@@ -1,8 +1,8 @@
 <?= $this->extend('layout/page_template'); ?>
 <?= $this->section('main-content'); ?>
 <!-- Lihat permintaan -->
-<h2 class=" my-3 mb-4 fw-bold">Daftar Permintaan Bahan Baku</h2>
-<p class="text-secondary my-3 pb-3"> Berikut adalah daftar permintaan bahan baku dari dapur.</p>
+<h2 class=" my-3 mb-4 fw-bold">Daftar Permintaan Bahan Baku Saya</h2>
+<p class="text-secondary my-3 pb-3"> Berikut adalah daftar permintaan bahan baku anda.</p>
 <div class="d-flex my-3 row">
   <table class="table table-bordered table-striped">
     <thead>
