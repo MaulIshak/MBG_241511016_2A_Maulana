@@ -21,7 +21,7 @@ $routes->group('bahan-baku', ['filter' => 'auth:gudang'], function($routes){
   // $routes->get('detail/(:num)', 'BahanBakuController::detail/$1');
   $routes->delete('delete/(:num)', 'BahanBakuController::delete/$1');
   $routes->get('edit/(:num)', 'BahanBakuController::edit/$1');
-  $routes->post('edit/(:num)', 'BahanBakuController::update/$1');
+  $routes->put('edit/(:num)', 'BahanBakuController::update/$1');
   $routes->get('permintaan', 'PermintaanController::showAll');
   $routes->put('permintaan/tolak/(:num)', 'PermintaanController::tolak/$1');
   $routes->put('permintaan/terima/(:num)', 'PermintaanController::terima/$1');

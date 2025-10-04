@@ -5,19 +5,22 @@
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <h2 class="mt-4 mb-4">Form Permintaan Bahan Baku Dapur</h2>
-            <form action="/dapur/permintaan" method="post">
+            <form action="/dapur/permintaan" method="post" id="permintaanForm">
                 <?= csrf_field() ?>
                 <div class="mb-3">
                     <label for="tanggal_masak" class="form-label">Tanggal Masak</label>
                     <input type="date" class="form-control" id="tanggal_masak" name="tanggal_masak" required>
+                    <div class="invalid-feedback"> </div>
                 </div>
                 <div class="mb-3">
                     <label for="menu" class="form-label">Menu yang akan dibuat</label>
                     <input type="text" class="form-control" id="menu" name="menu" required>
+                    <div class="invalid-feedback"> </div>
                 </div>
                 <div class="mb-3">
                     <label for="jumlah_porsi" class="form-label">Jumlah Porsi yang dibuat</label>
                     <input type="number" class="form-control" id="jumlah_porsi" name="jumlah_porsi" required>
+                    <div class="invalid-feedback"> </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Daftar Bahan Baku yang diminta</label>
@@ -41,16 +44,18 @@
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     </select>
+                                    <div class="invalid-feedback"> </div>
                                 </td>
                                 <td>
                                     <input type="number" class="form-control" name="jumlah_bahan[]" min="1" required>
+                                    <div class="invalid-feedback"> </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <button type="button" class="btn btn-secondary" id="addBahanBakuRow">+ Tambah Bahan Baku</button>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" id="btnSubmit" disabled>Submit</button>
             </form>
         </div>
     </div>

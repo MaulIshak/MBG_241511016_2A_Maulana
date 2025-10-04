@@ -153,7 +153,7 @@ if (bahanBakuForm) {
     const val = jumlah.value.trim();
     if (val === "") {
       setError(jumlah, "Jumlah wajib diisi");
-    } else if (isNaN(val) || parseInt(val) <= 0) {
+    } else if (isNaN(val) || parseInt(val) < 0) {
       setError(jumlah, "Jumlah harus berupa angka positif");
     } else {
       clearError(jumlah);
@@ -183,4 +183,89 @@ if (bahanBakuForm) {
     }
   });
   tanggalKadaluarsa.addEventListener("change", checkBahanBakuFormValidity);
+}
+
+const permintaanForm = document.getElementById("permintaanForm");
+if (permintaanForm) {
+  const tanggalMasak = document.getElementById("tanggal_masak");
+  const namaMenu = document.getElementById("menu");
+  const jumlahPorsi = document.getElementById("jumlah_porsi");
+  const bahanBaku = document.querySelectorAll("select[name='bahan_baku[]']");
+  const jumlahBahan = document.querySelectorAll("input[name='jumlah_bahan[]']");
+  // console.log(bahanBaku);
+  // console.log(jumlahBahan);
+  const btnSubmitPermintaan = document.getElementById("btnSubmit");
+
+  function checkPermintaanFormValidity() {
+    const inputs = [tanggalMasak, namaMenu, jumlahPorsi, ...bahanBaku, ...jumlahBahan];
+    let allValid = true;
+    inputs.forEach((input) => {
+      if (!input.classList.contains("is-valid")) {
+        allValid = false;
+      }
+    });
+    btnSubmitPermintaan.disabled = !allValid;
+  }
+  // validasi tanggal masak
+  tanggalMasak.addEventListener("input", () => {
+    const val = tanggalMasak.value.trim();
+    if (val === "") {
+      setError(tanggalMasak, "Tanggal masak wajib diisi");
+    } else {
+      clearError(tanggalMasak);
+      checkPermintaanFormValidity();
+    }
+  });
+  tanggalMasak.addEventListener("change", checkPermintaanFormValidity);
+  // validasi nama menu
+  namaMenu.addEventListener("input", () => {
+    const val = namaMenu.value.trim();
+    if (val === "") {
+      setError(namaMenu, "Nama menu wajib diisi");
+    } else {
+      clearError(namaMenu);
+      checkPermintaanFormValidity();
+    }
+  });
+  namaMenu.addEventListener("change", checkPermintaanFormValidity);
+  // validasi jumlah porsi
+  jumlahPorsi.addEventListener("input", () => {
+    const val = jumlahPorsi.value.trim();
+    if (val === "") {
+      setError(jumlahPorsi, "Jumlah porsi wajib diisi");
+    } else if (isNaN(val) || parseInt(val) <= 0) {
+      setError(jumlahPorsi, "Jumlah porsi harus berupa angka positif");
+    } else {
+      clearError(jumlahPorsi);
+      checkPermintaanFormValidity();
+    }
+  });
+  jumlahPorsi.addEventListener("change", checkPermintaanFormValidity);
+
+  // validasi bahan baku dan jumlah bahan
+  bahanBaku.forEach((input, index) => {
+    input.addEventListener("input", () => {
+      const val = input.value.trim();
+      if (val === "") {
+        setError(input, "Bahan baku wajib diisi");
+      } else {
+        clearError(input);
+        checkPermintaanFormValidity();
+      }
+    });
+    input.addEventListener("change", checkPermintaanFormValidity);
+    // validasi jumlah bahan
+    jumlahBahan[index].addEventListener("input", () => {
+      const val = jumlahBahan[index].value.trim();
+      if (val === "") {
+        setError(jumlahBahan[index], "Jumlah bahan wajib diisi");
+      } else if (isNaN(val) || parseInt(val) <= 0) {
+        setError(jumlahBahan[index], "Jumlah bahan harus berupa angka positif");
+      } else {
+        clearError(jumlahBahan[index]);
+        checkPermintaanFormValidity();
+      }
+    });
+    jumlahBahan[index].addEventListener("change", checkPermintaanFormValidity);
+  });
 }

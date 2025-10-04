@@ -37,18 +37,18 @@
               if($pm['status'] != 'menunggu') continue;
             ?>
             <div class="d-flex justify-content-evenly">
-              <form action="permintaan/terima/<?=$pm['id']?>" method="post" onsubmit="return confirm('Yakin menyetujui permintaan?')">
-                <input type="hidden" name="_method" value="PUT">
-                <button type="submit"  class="btn btn-success btn-sm rounded-pill">
+              <!-- <form action="permintaan/terima/<?=$pm['id']?>" method="post" onsubmit="return confirm('Yakin menyetujui permintaan?')"> -->
+                <!-- <input type="hidden" name="_method" value="PUT"> -->
+                <button type="submit"  class="btn btn-success btn-sm rounded-pill" data-id="<?=$pm['id']?>" data-bs-toggle="modal" data-bs-target="#setujuModal">
                   <i class="bi bi-check-lg"></i> Setuju
                 </button>
-              </form>
-              <form action="permintaan/tolak/<?=$pm['id']?>" method="post" onsubmit="return confirm('Yakin menolak permintaan?')">
-                <input type="hidden" name="_method" value="PUT">
-                <button type="submit"  class="btn btn-danger btn-sm rounded-pill" >
+              <!-- </form> -->
+              <!-- <form action="permintaan/tolak/<?=$pm['id']?>" method="post" onsubmit="return confirm('Yakin menolak permintaan?')"> -->
+                <!-- <input type="hidden" name="_method" value="PUT"> -->
+                <button type="submit"  class="btn btn-danger btn-sm rounded-pill" data-id="<?=$pm['id']?>" data-bs-toggle="modal" data-bs-target="#setujuModal">
                   <i class="bi bi-x-lg"></i> Tolak
                 </button>
-              </form>
+              <!-- </form> -->
             </div>
           </td>
         </tr>
@@ -63,6 +63,7 @@
 </div>
 
 <!-- Modal -->
+ <!-- Daftar bahan baku modal -->
 <div class="modal fade" id="bahanModal" tabindex="-1" aria-labelledby="bahanModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
     <div class="modal-content">
@@ -86,6 +87,28 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal konfirmasi tolak -->
+ <div class="modal fade" id="setujuModal" tabindex="-1" aria-labelledby="setujuModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="setujuModalLabel">Konfirmasi Setuju</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Yakin menyetujui permintaan?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="" method="post">
+          <input type="hidden" name="_method" value="PUT">
+          <button type="submit" class="btn btn-success">Yakin</button>
+        </form>
       </div>
     </div>
   </div>
@@ -122,7 +145,51 @@
       
     });
   });
+
+  // Setujui modal
+  const setujuModal = document.getElementById('setujuModal');
+  setujuModal.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    if(!button.classList.contains('btn-success')) return;
+    console.log('setuju');
+    const permintaanId = button.getAttribute('data-id');
+    const form = setujuModal.querySelector('form');
+
+    const submitBtn = tolakModal.querySelector('button[type="submit"]');
+    const modalTitle = tolakModal.querySelector('.modal-title');
+    const modalBody = tolakModal.querySelector('.modal-body');
+
+    modalTitle.textContent = 'Konfirmasi Setuju';
+    modalBody.textContent = 'Yakin menyetujui permintaan?';
+    submitBtn.classList.remove('btn-danger');
+    submitBtn.classList.add('btn-success');
+
+    form.action = `/bahan-baku/permintaan/terima/${permintaanId}`;
+  });
+
+  // tolak modal
+  const tolakModal = document.getElementById('setujuModal');
+
+  tolakModal.addEventListener('show.bs.modal', function (event) {
+    const button = event.relatedTarget;
+    if(!button.classList.contains('btn-danger')) return;
+    const permintaanId = button.getAttribute('data-id');
+    const form = tolakModal.querySelector('form');
+    const submitBtn = tolakModal.querySelector('button[type="submit"]');
+    const modalTitle = tolakModal.querySelector('.modal-title');
+    const modalBody = tolakModal.querySelector('.modal-body');
+
+    modalTitle.textContent = 'Konfirmasi Tolak';
+    modalBody.textContent = 'Yakin menolak permintaan?';
+    submitBtn.classList.remove('btn-success');
+    submitBtn.classList.add('btn-danger');
+    form.action = `/bahan-baku/permintaan/tolak/${permintaanId}`;
+  });
+
 });
+
+
+
 
 </script>
 

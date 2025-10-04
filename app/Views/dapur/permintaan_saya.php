@@ -31,6 +31,7 @@
           <td class="text-center"><div class="badge rounded-pill <?=
             ($pm['status'] == 'disetujui') ? 'text-bg-success': (($pm['status'] == 'ditolak') ? 'text-bg-danger' : 'text-bg-warning') ?>"><?=$pm['status']?></div>
             </td>
+
         </tr>
       <?php
             endforeach;

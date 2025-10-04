@@ -5,13 +5,15 @@
 <?php $validation = session()->getFlashdata('validation') ?? \Config\Services::validation();
     // d($validation->listErrors());
 ?>
-
+<div class="container">
+<div class="row">
+<div class="col-md-8 offset-md-2">
+    
 <h2 class="my-3 mb-4 fw-bold">Tambah Bahan Baku Baru</h2>
 <p class="text-secondary my-3 pb-3"> Isi form di bawah untuk menambahkan data bahan baku baru.</p>
 
 <div class="card">
     <div class="card-body">
-
         <form action="/bahan-baku/create" method="post" id="bahanBakuForm">
              <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
@@ -78,4 +80,8 @@
         </form>
     </div>
 </div>
+</div>
+</div>
+</div>
+
 <?= $this->endSection() ?>
