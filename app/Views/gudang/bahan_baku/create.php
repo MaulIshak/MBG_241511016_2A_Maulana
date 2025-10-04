@@ -74,8 +74,8 @@
                   </div>
             </div>
               <div class="d-flex justify-content-end">
-                <a href="/bahan-baku/" class="btn btn-secondary me-2">Batal</a>
-                <button type="submit" class="btn btn-primary" id="btnSubmit">Simpan</button>
+                <a href="/bahan-baku" class="btn btn-secondary me-2">Batal</a>
+                <button type="submit" class="btn btn-primary" id="btnSubmit" disabled>Simpan</button>
             </div>
         </form>
     </div>

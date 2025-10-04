@@ -52,14 +52,19 @@ class BahanBakuController extends BaseController
 
     public function store(){
         // Validasi input
-        // $rules = [
-        //     'nama' => 'required|min_length[3]|is_unique[bahan_baku.nama]',
-        // ];
+        $rules = [
+            'nama' => 'required',
+            'kategori' => 'required',
+            'satuan' => 'required',
+            'tanggal_masuk' => 'required|valid_date',
+            'tanggal_kadaluarsa' => 'required|valid_date',
+            'jumlah' => 'required|integer',
+        ];
 
-        // if (!$this->validate($rules)) {
-        //     return redirect()->back()->withInput()->with('validation', $this->validator);
-        // }
-        
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('validation', $this->validator);
+        }
+
         // Simpan data
         $data = [
             'nama' => $this->request->getPost('nama'),
@@ -102,13 +107,18 @@ class BahanBakuController extends BaseController
         }
 
         // Validasi input
-        // $rules = [
-        //     'nama' => 'required|min_length[3]|is_unique[bahan_baku.nama,id,' . $id . ']',
-        // ];
+        $rules = [
+            'nama' => 'required',
+            'kategori' => 'required',
+            'satuan' => 'required',
+            'tanggal_masuk' => 'required|valid_date',
+            'tanggal_kadaluarsa' => 'required|valid_date',
+            'jumlah' => 'required|integer',
+        ];
 
-        // if (!$this->validate($rules)) {
-        //     return redirect()->back()->withInput()->with('validation', $this->validator);
-        // }
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('validation', $this->validator);
+        }
 
         // Update data
         $data = [
@@ -127,6 +137,18 @@ class BahanBakuController extends BaseController
     
     public function delete($id){
         $bahanBakuModel = new \App\Models\BahanBakuModel();
+
+        $bahanBaku = $bahanBakuModel->find($id);
+        if($bahanBaku['status'] != 'kadaluarsa'){
+            if($this->request->isAJAX()){
+                $response = [
+                    'status' => 'error',
+                    'message' => 'Hanya bahan baku dengan status "Habis" yang dapat dihapus'
+                ];
+                return $this->response->setJSON($response);
+            }
+            return redirect()->back()->with('error', 'Hanya bahan baku dengan status "Habis" yang dapat dihapus');
+        }
         
         $bahanBakuModel->delete($id);
         if($this->request->isAJAX()){

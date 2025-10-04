@@ -44,7 +44,7 @@ class AuthController extends BaseController
 
             return redirect()->to('/')->with('success', 'Login successful');
         } else {
-            return redirect()->back()->withInput()->with('error', 'Invalid username or password');
+            return redirect()->back()->withInput()->with('error', 'Invalid email or password');
         }
     }
 
