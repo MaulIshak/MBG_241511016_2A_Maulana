@@ -87,4 +87,10 @@ class PermintaanModel extends Model
         return $permintaanList;
 
     }
+    public function getJumlahPermintaan(){
+        return $this->countAllResults();
+    }
+    public function getJumlahPermintaaByStatus($status){
+        return $this->where('status', $status)->countAllResults();
+    }
 }

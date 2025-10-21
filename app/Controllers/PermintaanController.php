@@ -84,13 +84,8 @@ class PermintaanController extends BaseController
         $permintaanDetailModel = new \App\Models\PermintaanDetailModel();
         $bahanBakuModel = new \App\Models\BahanBakuModel();
 
-        $data = [
-            'status' => 'disetujui'
-        ];
-
-        $permintaanModel->update($id, $data);
         $permintaanDetail = $permintaanDetailModel->where('permintaan_id', $id)->findAll();
-
+        
         foreach ($permintaanDetail as $detail) {
             // Update jumlah bahan baku
             $bahanBaku = $bahanBakuModel->find($detail['bahan_id']);
@@ -102,7 +97,13 @@ class PermintaanController extends BaseController
                 $bahanBakuModel->update($detail['bahan_id'], ['jumlah' => $newJumlah]);
             }
         }
-
+        
+        $data = [
+            'status' => 'disetujui'
+        ];
+    
+        $permintaanModel->update($id, $data);
+        
         return redirect()->back()->with('success', 'Permintaan berhasil diterima dan bahan baku diperbarui.');
     }
 

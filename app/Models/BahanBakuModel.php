@@ -43,4 +43,14 @@ class BahanBakuModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getJumlahBahanBakuByStatus($status)
+    {
+        return $this->where('status', $status)->countAllResults();
+    }
+    
+    public function getJumlahBahanBaku()
+    {
+        return $this->countAllResults();
+    }
 }
