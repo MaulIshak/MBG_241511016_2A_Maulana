@@ -1,13 +1,14 @@
 <?= $this->extend('layout/page_template'); ?>
 <?= $this->section('main-content'); ?>
 
+
 <h2 class=" my-3 mb-4 fw-bold">Daftar Bahan Baku</h2>
 <p class="text-secondary my-3 pb-3"> Berikut adalah daftar bahan baku yang terdaftar dalam sistem.</p>
 <div class="d-flex my-3 row">
   <!-- Tambahkan catatn di-atas table bahan yang bisa dihapus hanya yang kadaluarsa -->
   <div class="alert alert-info" role="alert">
     <h4 class="alert-heading">Catatan:</h4>
-    <p>Hanya bahan baku dengan status <strong>"kadaluarsa"</strong> yang dapat dihapus. Pastikan untuk memeriksa status bahan baku sebelum melakukan penghapusan.</p>
+    <p>Hanya bahan baku dengan status <strong>"kadaluarsa"</strong> yang dapat dihapus. Selain itu, bahan kadaluarsa juga <strong>tidak dapat diedit</strong>. Pastikan untuk memeriksa status bahan baku sebelum melakukan penghapusan.</p>
 
   </div>
   <div class="my-2">
@@ -53,7 +54,7 @@
                 <form data-id="<?= $bb['id'] ?>" data-name="<?=$bb['nama']?>" class="delete-form" onsubmit="return false;">
                   <!-- <input type="hidden" name="_method" value="DELETE"> -->
                   <div class="input-group">
-                    <a href="/bahan-baku/edit/<?=$bb['id']?>" class="btn btn-warning btn-sm">
+                    <a href="/bahan-baku/edit/<?=$bb['id']?>" class="btn btn-warning btn-sm <?=( $bb['status'] == "kadaluarsa")  ? 'disabled-link':'';?>"   >
                       <i class="bi bi-pencil-square"></i> Edit
                     </a>
                     <button type="submit"  class="btn btn-danger btn-sm" <?=( $bb['status'] != "kadaluarsa")  ? 'disabled':'';?> >
@@ -74,3 +75,4 @@
 
 
 <?= $this->endSection(); ?>
+

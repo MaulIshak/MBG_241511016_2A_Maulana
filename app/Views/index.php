@@ -8,6 +8,38 @@
 </div>
 
 <?php if(session()->get('role') == 'gudang'): ?>
+  <!-- ========================= -->
+<!-- TIPS & INSIGHT SECTION -->
+<!-- ========================= -->
+<div class="mt-5">
+  <div class="card border-0 shadow-sm rounded-3">
+    <div class="card-body">
+      <h5 class="fw-bold text-primary mb-3"><i class="bi bi-lightbulb-fill me-2"></i>Tips & Insight Gudang</h5>
+      <ul class="list-unstyled">
+        <li class="mb-2">
+          <i class="bi bi-check-circle text-success me-2"></i>
+          <strong>Pastikan rotasi stok dilakukan secara rutin (FIFO):</strong>
+          Gunakan bahan yang lebih lama terlebih dahulu agar tidak menumpuk dan kadaluarsa.
+        </li>
+        <li class="mb-2">
+          <i class="bi bi-check-circle text-success me-2"></i>
+          <strong>Perhatikan bahan dengan label “segera kadaluarsa”:</strong>
+          Jika jumlahnya meningkat, pertimbangkan redistribusi atau pemakaian lebih cepat.
+        </li>
+        <li class="mb-2">
+          <i class="bi bi-check-circle text-success me-2"></i>
+          <strong>Validasi permintaan dengan teliti:</strong>
+          Pastikan status permintaan sesuai dengan ketersediaan bahan di gudang untuk menghindari over-request.
+        </li>
+        <li class="mb-2">
+          <i class="bi bi-check-circle text-success me-2"></i>
+          <strong>Gunakan momen pagi untuk pengecekan cepat:</strong>
+          Dashboard ini menampilkan data ringkas untuk membantu kamu mengambil keputusan lebih cepat setiap hari.
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 <div class="container mt-4">
     <div class="row g-4">
     <!-- Card 1 -->
@@ -68,45 +100,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- ========================= -->
-<!-- TIPS & INSIGHT SECTION -->
-<!-- ========================= -->
-<div class="mt-5">
-  <div class="card border-0 shadow-sm rounded-3">
-    <div class="card-body">
-      <h5 class="fw-bold text-primary mb-3"><i class="bi bi-lightbulb-fill me-2"></i>Tips & Insight Gudang</h5>
-      <ul class="list-unstyled">
-        <li class="mb-2">
-          <i class="bi bi-check-circle text-success me-2"></i>
-          <strong>Pastikan rotasi stok dilakukan secara rutin (FIFO):</strong>
-          Gunakan bahan yang lebih lama terlebih dahulu agar tidak menumpuk dan kadaluarsa.
-        </li>
-        <li class="mb-2">
-          <i class="bi bi-check-circle text-success me-2"></i>
-          <strong>Perhatikan bahan dengan label “segera kadaluarsa”:</strong>
-          Jika jumlahnya meningkat, pertimbangkan redistribusi atau pemakaian lebih cepat.
-        </li>
-        <li class="mb-2">
-          <i class="bi bi-check-circle text-success me-2"></i>
-          <strong>Validasi permintaan dengan teliti:</strong>
-          Pastikan status permintaan sesuai dengan ketersediaan bahan di gudang untuk menghindari over-request.
-        </li>
-        <li class="mb-2">
-          <i class="bi bi-check-circle text-success me-2"></i>
-          <strong>Gunakan momen pagi untuk pengecekan cepat:</strong>
-          Dashboard ini menampilkan data ringkas untuk membantu kamu mengambil keputusan lebih cepat setiap hari.
-        </li>
-      </ul>
-
-      <hr>
-
-      <p class="text-muted small fst-italic">
-        “Manajemen gudang yang baik bukan hanya soal stok, tapi juga soal ketepatan waktu dan ketelitian.”
-      </p>
     </div>
   </div>
 </div>
