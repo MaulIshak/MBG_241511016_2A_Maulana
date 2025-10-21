@@ -2,7 +2,7 @@
 
 <?=$this->section('main-content');?>
 
-<div class="mb-5">
+<div>
   <h2 class="my-3 mb-4 fw-bold">Dashboard</h2>
   <h4 class="text-secondary">Selamat Datang, <?=esc(session()->get('name'))?>!</h4>
 </div>
@@ -11,7 +11,7 @@
   <!-- ========================= -->
 <!-- TIPS & INSIGHT SECTION -->
 <!-- ========================= -->
-<div class="mt-5">
+<div class="mt-3">
   <div class="card border-0 shadow-sm rounded-3">
     <div class="card-body">
       <h5 class="fw-bold text-primary mb-3"><i class="bi bi-lightbulb-fill me-2"></i>Tips & Insight Gudang</h5>

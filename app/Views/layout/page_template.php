@@ -1,6 +1,6 @@
 <?=$this->extend('layout/template');?>
 <?=$this->section('content');?>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
       <img src="<?=base_url('img/Logo_Badan_Gizi_Nasional.png')?>" alt="logo bfg" width="30" class="d-inline-block align-text-top">
